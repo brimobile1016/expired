@@ -1,0 +1,71 @@
+/* RESET DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+body.active {
+    background: #f0fdf4;
+    color: #065f46;
+}
+
+body.active .container {
+    border-color: #bbf7d0;
+    background: #ecfdf5;
+}
+
+body.expired {
+    background: #fff1f2;
+    color: #b91c1c;
+}
+
+body.expired .container {
+    border-color: #fecaca;
+    background: #fef2f2;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}

@@ -1,3 +1,4 @@
+<!-- expired.html -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -50,18 +51,9 @@
 <body>
   <div class="container">
     <h1>⚠️ Website Expired</h1>
-    <p id="domain"></p>
-    <p id="expired"></p>
+    <p>Domain: {{domain}}</p>
+    <p>Expired pada: {{expired}} WIB</p>
     <div class="badge">Silakan hubungi admin untuk perpanjangan.</div>
   </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const domain = params.get('domain') || 'Tidak diketahui';
-    const expired = params.get('expired') || 'Tidak tersedia';
-
-    document.getElementById('domain').innerText = `Domain: ${domain}`;
-    document.getElementById('expired').innerText = `Expired pada: ${expired} WIB`;
-  </script>
 </body>
 </html>

@@ -63,30 +63,37 @@
   fetch('/api/config.json')
     .then(res => res.json())
     .then(data => {
-      const host = window.location.hostname; // contoh: expired-pi.vercel.app
+      const host = window.location.hostname; 
       const expiredDate = data[host];
 
       document.getElementById("domain").innerText = "Domain: " + host;
 
+      const contact = document.getElementById("contact");
+
       if (expiredDate) {
-        // kalau ada di config
+        // kalau domain ada di config
         document.getElementById("expired").innerText = "Expired pada: " + expiredDate + " WIB";
+        contact.innerText = "Silakan hubungi admin untuk perpanjangan.";
       } else {
-        // kalau tidak ada di config → hapus bagian expired
+        // kalau domain tidak ada di config
         document.getElementById("expired").remove();
 
-        // tambahkan pesan registrasi
+        // pesan warning
         const msg = document.createElement("p");
         msg.style.color = "#ffcc00";
         msg.style.marginTop = "10px";
         msg.innerText = "⚠️ Domain tidak ditemukan, silakan registrasi.";
-        document.querySelector(".container").appendChild(msg);
+        document.querySelector(".container").insertBefore(msg, contact);
+
+        // ubah tombol WA jadi "registrasi"
+        contact.innerText = "Silakan hubungi admin untuk registrasi.";
       }
     })
     .catch(err => {
       console.error("Gagal load config.json:", err);
     });
 </script>
+
 
 </body>
 </html>

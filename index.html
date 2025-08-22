@@ -4,17 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Website Expired</title>
-  
   <style>
-    .badge {
-      cursor: pointer;
-      display: inline-block;
-      pointer-events: auto !important;
-      z-index: 9999 !important;
-      text-align: center;
-      text-decoration: none;
-    }
-
     body {
       background: #121212;
       color: #ffffff;
@@ -54,17 +44,39 @@
       padding: 10px 20px;
       border-radius: 8px;
       font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>⚠️ Website Expired</h1>
-    <p>Domain: {{domain}}</p>
-    <p>Expired pada: {{expired}} WIB</p>
+    <p id="domain">Domain: ...</p>
+    <p id="expired">Expired pada: ... WIB</p>
     <a href="https://wa.me/6288279268363" class="badge" target="_blank">
       Silakan hubungi admin untuk perpanjangan.
     </a>
   </div>
+
+  <script>
+    // ambil config.json
+    fetch('/api/config.json')
+      .then(res => res.json())
+      .then(data => {
+        // ambil nama domain dari URL yang sedang dibuka
+        const host = window.location.hostname;
+
+        // cari expired date dari config
+        const expiredDate = data[host];
+
+        // tampilkan di halaman
+        document.getElementById("domain").innerText = "Domain: " + host;
+        document.getElementById("expired").innerText = "Expired pada: " + (expiredDate ?? "Tidak ditemukan") + " WIB";
+      })
+      .catch(err => {
+        console.error("Gagal load config.json:", err);
+      });
+  </script>
 </body>
 </html>

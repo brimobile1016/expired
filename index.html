@@ -51,7 +51,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>⚠️ Website Expired</h1>
+    <h1 id="title">⚠️ Website Expired</h1>
     <p id="domain">Domain: ...</p>
     <p id="expired">Expired pada: ... WIB</p>
     <a href="https://wa.me/6288279268363" class="badge" id="contact" target="_blank">
@@ -67,25 +67,20 @@
       const expiredDate = data[host];
 
       document.getElementById("domain").innerText = "Domain: " + host;
-
       const contact = document.getElementById("contact");
+      const title = document.getElementById("title");
 
       if (expiredDate) {
         // kalau domain ada di config
+        title.innerText = "⚠️ Website Expired";
         document.getElementById("expired").innerText = "Expired pada: " + expiredDate + " WIB";
         contact.innerText = "Silakan hubungi admin untuk perpanjangan.";
       } else {
         // kalau domain tidak ada di config
+        title.innerText = "⚠️ Website tidak ditemukan";
         document.getElementById("expired").remove();
 
-        // pesan warning
-        const msg = document.createElement("p");
-        msg.style.color = "#ffcc00";
-        msg.style.marginTop = "10px";
-        msg.innerText = "⚠️ Domain tidak ditemukan, silakan registrasi.";
-        document.querySelector(".container").insertBefore(msg, contact);
-
-        // ubah tombol WA jadi "registrasi"
+        // langsung ubah teks tombol
         contact.innerText = "Silakan hubungi admin untuk registrasi.";
       }
     })
@@ -93,6 +88,7 @@
       console.error("Gagal load config.json:", err);
     });
 </script>
+
 
 
 </body>
